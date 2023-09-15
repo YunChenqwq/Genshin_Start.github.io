@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原神，启动！</title>
+    <h2 align="center">有❤️你❤️想❤️看❤️的,点❤️击❤️屏❤️幕❤️启❤️动</h2>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./Genshin/style.css">
+</head>
+
+<body>
+    <div class="load">
+        <img src="./Genshin/OP_s.png">
+    </div>
+    <audio src="./Genshin/menchan.mp3"></audio>
+
+    <script src="https://cdn.staticfile.org/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script>
+        const openGenshinImpact = time => {
+            setTimeout(() => {
+                const audio = document.querySelector('audio')
+                const load = document.querySelector('.load')
+
+                load.classList.add('activate')
+                audio.play()
+
+                audio.addEventListener('ended', () => {
+                    audio.src = "./Genshin/OPGo.mp3";
+                    audio.play();
+
+                    audio.addEventListener('ended', () => {
+                        audio.pause(); // 播放结束后立即停止播放
+                        window.location.href = "https://www.bilibili.com/video/BV1GJ411x7h7/";
+                    });
+                });
+            }, time);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const startButton = document.querySelector('.load');
+            const hintText = document.querySelector('h2');
+
+            startButton.addEventListener('click', () => {
+                hintText.style.display = 'none'; // 点击屏幕后隐藏提示字符串
+
+                openGenshinImpact(0);
+                launchFullscreen(document.documentElement); // 点击屏幕后全屏显示
+            });
+        });
+
+        function launchFullscreen(element) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+
+</html>
